@@ -1,0 +1,33 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="OfficeManagement.Site" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Office space</title>
+    <link href="Site.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+        <div class="page">
+            <div class="header">
+                <div class="clear hideSkiplink">
+                    <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" SkipLinkText=""
+                        EnableViewState="False" IncludeStyleBlock="False" Orientation="Horizontal"
+                        DataSourceID="SiteMapDataSource" StaticDisplayLevels="2">
+                    </asp:Menu>
+                    <asp:SiteMapPath ID="SiteMapPathBreadcrump" runat="server" />
+                </div>
+            </div>
+            <div class="main">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolderMain" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="clear" />
+            <div class="footer">(c) Bai Stavri 2013</div>
+        </div class="page">
+    </form>
+    <asp:SiteMapDataSource runat="server" ID="SiteMapDataSource" />
+</body>
+</html>

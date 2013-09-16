@@ -1,0 +1,9 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master"
+    AutoEventWireup="true" CodeBehind="Contacts.master.cs"
+    Inherits="MasterPageDemo.Contacts" %>
+
+<asp:Content ID="ContentMain" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
+    <h1>My Friend lists</h1>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolderContacts" runat="server" />
+    <p>Contact them only in case of emergency (found extra large scrap pieces, police trouble, etc..)</p>
+</asp:Content>
