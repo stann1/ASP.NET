@@ -26,7 +26,7 @@
             </div>
             <div class="clear" />
             <div class="footer">(c) Bai Stavri 2013</div>
-        </div class="page">
+        </div>
     </form>
     <asp:SiteMapDataSource runat="server" ID="SiteMapDataSource" />
 </body>
