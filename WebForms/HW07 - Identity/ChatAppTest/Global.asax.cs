@@ -22,6 +22,7 @@ namespace ChatAppTest
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+            //afadf
         }
     }
 }
