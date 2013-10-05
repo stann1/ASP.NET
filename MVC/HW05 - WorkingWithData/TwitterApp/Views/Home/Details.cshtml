@@ -1,0 +1,14 @@
+﻿@model TwitterApp.Models.Tweet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Tweet Details</h2>
+<div class="container">
+    <p><strong>Author: </strong> @Html.DisplayFor(model => model.Creator.UserName)</p>
+    <p>@Html.DisplayFor(model => model.Content)</p>
+    <p><strong>Tag: </strong> @Html.DisplayFor(model => model.Tag.Name)</p>
+    <p><strong>Date added: </strong> @Html.DisplayFor(model => model.PostDate)</p>
+</div>
+@Html.ActionLink("Back to home", "Index")

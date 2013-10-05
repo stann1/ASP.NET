@@ -1,0 +1,73 @@
+﻿@model MoviesCatalogue.Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Movie</legend>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Director)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Director)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Studio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Studio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudioAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudioAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeadingMale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeadingMale.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeadingFemale)
+         </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeadingFemale.Name)
+          </dd>
+
+    </dl>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,1 @@
+Kendo MVC library (dll) and scripts were excluded from the project due to License limitations

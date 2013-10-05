@@ -1,0 +1,43 @@
+﻿@model IEnumerable<LibrarySystemMvc.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All categories</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Ajax.ActionLink("Delete", "Delete", new { id = item.Id }, new AjaxOptions()
+                    {
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "delete-cat"
+                    })
+        </td>
+    </tr>
+}
+</table>
+<p>
+    @Ajax.ActionLink("Create new", "Create", new AjaxOptions()
+                    {
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "create-cat"
+                    })
+</p>
+<div id="create-cat"></div>
+<div id="delete-cat"></div>

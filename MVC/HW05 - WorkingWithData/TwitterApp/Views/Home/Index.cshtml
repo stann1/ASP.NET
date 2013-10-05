@@ -1,0 +1,57 @@
+﻿@model IEnumerable<TwitterApp.Models.Tweet>
+@{
+    ViewBag.Title = "Home Page";  
+}
+
+<div class="hero-unit">
+    <h1>Twitter App</h1>
+    <p class="lead">Looks like twitter (and is useless like twitter)</p>
+    <span id="search">
+        @using (Html.BeginForm("SearchResult", "Home", FormMethod.Post, new { @class = "form-inline" }))
+        {
+            <label>Search by tag: </label>
+            @Html.TextBox("searchString")            
+            <input type="submit" name="Search" class="btn" />
+        }
+    </span>    
+</div>
+<div class="container">
+    <h2>Last 10 tweets:</h2>
+    <table class="table table-bordered table-condensed table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Creator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostDate)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Creator.UserName)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Home", new { item.Id })">
+                        @((item.Content).Length <= 50 ? item.Content : item.Content.Substring(0, 50) + "...")
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tag.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostDate)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

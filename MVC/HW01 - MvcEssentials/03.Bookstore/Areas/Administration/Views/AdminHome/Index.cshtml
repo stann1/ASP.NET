@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Administration area - main page</h2>
+@section UserInfo {
+    <p>User name: @User.Identity.Name </p>
+    <p>Has admin privillages: @User.IsInRole("Administrator") </p>
+}
+

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<_02.Calculator.Models.CalculatorModel>
+@{
+    ViewBag.Title = "Home Page";
+    var selected = Model.Select(s => new SelectListItem()
+    {
+        Selected = false,
+        Text = s.Name,
+        Value = s.SizeInBytes.ToString()
+    });
+    var dropDownList = Html.DropDownList("inputType", selected);      
+}
+
+<div class="hero-unit">
+    <h1>Calculator</h1>    
+</div>
+<div class="row">
+    <div class="span8">        
+        <p>Select quantity and type from the dropdown and it will be converted to other types</p>
+        @using (@Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <p><label>Select quantity:</label>@Html.TextBox("inputQuantity")</p>
+            <p><label>Select type:</label>@dropDownList</p>
+            <input type="submit" />
+        }
+
+        <div id="result">
+            @if (ViewBag.Results != null)
+            {
+                @Html.Partial("_PartialResults", ViewBag.Results as IEnumerable<_02.Calculator.Models.CalculatorModel>);
+            }                    
+        </div>
+    </div>   
+</div>

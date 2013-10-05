@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Kendo.Mvc.UI.TreeViewItemModel>
+@{
+    ViewBag.Title = "Home Page";  
+}
+
+<div class="hero-unit">
+    <h2>Welcome to our Library</h2>
+    <p class="lead">See some of our most recommended books below</p>
+    <div id="form-search"> 
+        @(Html
+            .Kendo()
+            .AutoComplete()
+            .Name("client-autocomplete")
+            .BindTo(ViewBag.AllBooks as IEnumerable<LibrarySystemMvc.Models.BookViewModel>)
+            .Filter(FilterType.Contains)
+            .MinLength(3)
+            .DataTextField("Title")
+            .Events(ev =>
+                {
+                    ev.Select("selectAutoComplete");
+                })
+            .Placeholder("Enter book"))
+    </div>
+</div>
+<div>
+    @(Html.Kendo().TreeView().Name("books")
+                             .BindTo(Model).DataSpriteCssClassField("sprite"))
+                            
+</div>
+<script>    
+    function selectAutoComplete(e) {
+        var itemId = this.dataItem(e.item.index()).Id;
+        console.log(itemId);
+        location.href = "/Books/Details/" + itemId;
+    }
+</script>

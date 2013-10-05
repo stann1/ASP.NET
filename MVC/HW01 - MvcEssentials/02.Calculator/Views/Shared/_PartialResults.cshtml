@@ -1,0 +1,16 @@
+﻿@model IEnumerable<_02.Calculator.Models.CalculatorModel>
+
+<table class="table table-bordered">
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.SizeInBytes</td>
+        </tr>
+    }
+</table>
+
+
+
+
+

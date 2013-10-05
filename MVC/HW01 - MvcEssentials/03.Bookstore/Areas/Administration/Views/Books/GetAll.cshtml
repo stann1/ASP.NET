@@ -1,0 +1,36 @@
+﻿@using _03.Bookstore.Models
+@model IEnumerable<BookModel>
+@{
+    ViewBag.Title = "GetAll";  
+}
+
+<h2>All books:</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Author</td>
+            <td>@Html.ActionLink("View details", "EditBook", "Books", new { id = @item.Id }, null)</td>
+        </tr>
+    }
+</table>
+@section UserInfo {
+    <p>User name: @User.Identity.Name </p>
+    <p>Has admin privillages: @User.IsInRole("Administrator") </p>
+}
+
+<div id="selected-book">
+    @if (ViewBag.SelectedBook != null)
+    {
+         @Html.Partial("_SingleBookPartial", (BookModel)ViewBag.SelectedBook)
+    }   
+</div>
+

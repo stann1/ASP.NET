@@ -1,0 +1,98 @@
+﻿@model LibrarySystemMvc.Models.Book
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Book</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>Book</legend>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Author, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Author)
+                @Html.ValidationMessageFor(model => model.Author, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.ISBN, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.ISBN)
+                @Html.ValidationMessageFor(model => model.ISBN, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Website, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Website)
+                @Html.ValidationMessageFor(model => model.Website, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.HiddenFor(model => model.Category.Title)
+                <div class="controls">
+                    @(Html.Kendo().DropDownList()
+                            .Name("categoryList")
+                            .DataTextField("Title")
+                            .DataValueField("Title")
+                            .OptionLabel("--Select Category--")
+                            .Events(ev => ev.Select("selectedValue"))
+                            .DataSource(data =>
+                            {
+                                data.Read(read =>
+                                    {
+                                        read.Action("GetAll", "Categories");
+                                    })
+                                .ServerFiltering(true);
+                            })
+
+                )
+              </div>
+        </div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Create" class="btn" />
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script type="text/javascript">
+    function selectedValue(e) {
+        $('#Category_Title').val(this.dataItem(e.item.index()).Title);
+    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

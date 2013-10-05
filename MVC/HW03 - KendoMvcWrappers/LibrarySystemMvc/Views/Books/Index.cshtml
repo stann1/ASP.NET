@@ -1,0 +1,58 @@
+﻿@model IEnumerable<LibrarySystemMvc.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All books</h2>
+<div class="container">
+@(Html.Kendo().Grid(Model)
+            .Name("books-table")
+            .Columns(column =>
+                {
+                    column.Bound(book => book.Title);
+                    column.Bound(book => book.Author);
+                    column.Bound(book => book.ISBN);
+                    column.Bound(book => book.Website);
+                    column.Bound(book => book.Category.Title).Title("Category").Width(160);
+                    column.Template(@<text>@Html.ActionLink("Edit", "Edit", new { id = item.Id })</text>);
+                    column.Template(@<text>@Ajax.ActionLink("Delete", "Delete", new { id = item.Id },
+                                    new AjaxOptions {
+                                        HttpMethod = "GET",
+                                        InsertionMode = InsertionMode.Replace,
+                                        UpdateTargetId = "delete-book"
+                                      })</text>);                   
+                })
+            .Sortable()
+            .Pageable()                        
+            .DataSource(dataSource =>
+              dataSource
+                .Server()
+                .Model(model =>
+                {
+                    model.Id(book => book.Id); // Specify the property which is the unique identifier of the model
+                    model.Field(book => book.Id).Editable(false); // Make the ProductID property not editable                    
+                })
+                .PageSize(5)
+            )) 
+</div>
+<div>
+    @Html.ActionLink("Add book", "Create")
+</div>
+<div id="delete-book"></div>
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>
+

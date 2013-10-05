@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TwitterApp.Models.Tweet>
+@{
+    ViewBag.Title = "My Tweets";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="container">
+    @Html.ActionLink("Create new tweet", "CreateTweet")
+    <table class="table table-bordered table-condensed table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PostDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tag)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostDate)
+                </td>
+                <td>                    
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tag.Name)
+                </td>                
+            </tr>
+        }
+
+    </table>
+    @Html.ActionLink("Back to home", "Index", "Home")
+</div>
